@@ -1,10 +1,10 @@
 import dotenv from 'dotenv/config'
 
 
-export const database = process.env.DATABASE
-export const username = process.env.USERNAME
-export const password = process.env.PASSWORD
-export const host = process.env.host
-export const dialect = process.env.dialect
-export const port = process.env.port_db
+export const database = "railway"
+export const username = "root"
+export const password = "3zEP1Ms6EXBSulnDfbOG"
+export const host = 'containers-us-west-97.railway.app'
+export const dialect = "mysql"
+export const port = 6017
 
