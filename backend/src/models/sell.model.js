@@ -27,8 +27,7 @@ export const Sell = db.define('sell',{
             type: INTEGER,
             allowNull: true
         },
-        
-
+     
 
         })
 
