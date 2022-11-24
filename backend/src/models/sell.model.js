@@ -4,7 +4,7 @@ import { Schedule } from "./schedule.model.js";
 import {User} from "./user.model.js"
 import {Billboard} from "./billborad.model.js"
 const { STRING, INTEGER, DOUBLE } = DataTypes
-
+//test
 export const Sell = db.define('sell',{ 
         id: {
             type: INTEGER,
