@@ -1,6 +1,6 @@
 import  { Sell } from '../models/sell.model.js'
-
-
+import { getResponses as room} from './room.controller.js'
+import { Room } from '../models/room.model.js'
 export const getResponses = async (req,res) => {
     try{
         const list = await Sell.findAll({ include: { all: true }})
@@ -35,15 +35,13 @@ export const responseById = async (req,res) => {
 export const createResponse = async  (req,res) => {
 
     try {
-     
-      
       
      
        
-    let { billboard_id, amount, user_id, total,price} = req.body
+    let { billboard_id, amount, user_id, total,price,seats} = req.body
 
     const createRegister = await Sell.create({
-        billboard_id, amount, user_id, total,price
+        billboard_id, amount, user_id, total,price,seats, 
     })
 
     res.status(200).json({message: "Register was created succesfully", createRegister})
@@ -76,6 +74,7 @@ export const deleteResponse = async (req,res) => {
 export const editResponse = async (req,res) => {
     
     const { id } = req.params
+    console.log(id)
     try {
 
         let { billboard_id, amount, user_id, total,price} = req.body
