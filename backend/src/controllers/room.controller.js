@@ -3,7 +3,7 @@ import  { Room } from '../models/room.model.js'
 
 export const getResponses = async (req,res) => {
     try{
-        const list = await Room.findAll({ include: { all: true }})
+        const list = await Room.findAll()
         res.status(200).json(list)
     }catch(err){
         console.log(err);
@@ -36,10 +36,37 @@ export const createResponse = async  (req,res) => {
 
     try {
     
-    const { name, capacity, seats_distribution, desc_location  } = req.body
+    const { name, capacity,  desc_location  } = req.body
+    
+    const convertValue = val => {
+    let capacidad = val
+
+    var data = [];
+    let numb= 0;
+    let position =65
+
+    var tempData = [];
+    for ( var index=0; index<=capacidad; index++ ) {
+   
+    if(numb %10==0 && numb>10){
+        position+=1
+         numb= 0;
+    }
+    let char = String.fromCharCode(position);
+  
+    data[index] = { "ID": char+(numb+1), "State": "Available" };
+     tempData.push( data );
+    numb+= 1;
+    }
+    [data] = tempData;
+    const [...res] = data
+    res.pop(res.length - 1)
+    return res
+    }
+    
 
     const createRegister = await Room.create({
-        name, capacity, seats_distribution, desc_location
+        name, capacity, seats_distribution: convertValue(capacity), desc_location
     })
 
     res.status(200).json({message: "Register was created succesfully", createRegister})
@@ -82,7 +109,6 @@ export const editResponse = async (req,res) => {
 
             editRegister.name = name
             editRegister.capacity = capacity
-            editRegister.seats_distribution = seats_distribution
             editRegister.desc_location = desc_location
             await editRegister.save()
         

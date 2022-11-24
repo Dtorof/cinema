@@ -15,4 +15,4 @@ export const Category = db.define('category',{
         type: STRING,
         allowNull: false
         }
-    })
+    }, {timestamps: false})
