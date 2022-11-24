@@ -1,9 +1,9 @@
-import  { Room } from '../models/room.model.js'
+import  { Sell } from '../models/sell.model.js'
 
 
 export const getResponses = async (req,res) => {
     try{
-        const list = await Room.findAll()
+        const list = await Sell.findAll({ include: { all: true }})
         res.status(200).json(list)
     }catch(err){
         console.log(err);
@@ -13,7 +13,7 @@ export const getResponses = async (req,res) => {
 export const responseById = async (req,res) => {
     const { id } = req.params
     try{
-        const itemId = await Room.findOne({
+        const itemId = await Sell.findOne({
             where: {
               id,
             },
@@ -35,38 +35,15 @@ export const responseById = async (req,res) => {
 export const createResponse = async  (req,res) => {
 
     try {
-    
-    const { name, capacity,  desc_location  } = req.body
-    
-    const convertValue = val => {
-    let capacidad = val
+     
+      
+      
+     
+       
+    let { billboard_id, amount, user_id, total,price} = req.body
 
-    var data = [];
-    let numb= 0;
-    let position =65
-
-    var tempData = [];
-    for ( var index=0; index<=capacidad; index++ ) {
-   
-    if(numb %10==0 && numb>10){
-        position+=1
-         numb= 0;
-    }
-    let char = String.fromCharCode(position);
-  
-    data[index] = { "ID": char+(numb+1), "State": "Available" };
-     tempData.push( data );
-    numb+= 1;
-    }
-    [data] = tempData;
-    const [...res] = data
-    res.pop(res.length - 1)
-    return res
-    }
-    
-
-    const createRegister = await Room.create({
-        name, capacity, seats_distribution: convertValue(capacity), desc_location
+    const createRegister = await Sell.create({
+        billboard_id, amount, user_id, total,price
     })
 
     res.status(200).json({message: "Register was created succesfully", createRegister})
@@ -80,7 +57,7 @@ export const createResponse = async  (req,res) => {
 export const deleteResponse = async (req,res) => {
     const { id } = req.params
     try{
-        const deleteOne =  await Room.destroy({
+        const deleteOne =  await Sell.destroy({
             where: {
                 id
             }
@@ -101,15 +78,19 @@ export const editResponse = async (req,res) => {
     const { id } = req.params
     try {
 
-        const { name, capacity, seats_distribution, desc_location } = req.body
+        let { billboard_id, amount, user_id, total,price} = req.body
     
-        const editRegister = await Room.findByPk(id)
-
+        const editRegister = await Sell.findByPk(id)
+       
+    
         if (editRegister) {
 
-            editRegister.name = name
-            editRegister.capacity = capacity
-            editRegister.desc_location = desc_location
+            editRegister.billboard_id = billboard_id
+            editRegister.amount = amount
+            editRegister.user_id = user_id
+            editRegister.total = total
+            editRegister.price = price
+       
             await editRegister.save()
         
             res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})

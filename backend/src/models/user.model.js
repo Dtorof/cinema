@@ -33,5 +33,5 @@ export const User = db.define('user',{
             type: STRING,
             allowNull: true
         }
-        })
+        }, {timestamps: false})
 

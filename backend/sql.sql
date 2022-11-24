@@ -1,68 +1,26 @@
-
-http://localhost:7500/api/v1/pqr-type
--- PQR Type
-
+-- users
 {
-    "name": "public"
+    name: Bob
+    lastname: Spasky
+    cc: 1262743
+    address: 34 Avenue
+    phone: 94236982
+    email: bob@hotmail.com
 }
 
 
-http://localhost:7500/api/v1/pqr-category
--- PQR Category
-{
-    "name" : "Sobrecargo factura",
-    "type_pqr_id" : 1
-}
+-- movies
 
-http://localhost:7500/api/v1/user
--- User
-{
-    "name" : "Shaggy",
-    "userName" : "Shag982",
-    "document" : "3496826",
-    "password" : "942y269y8bv"
-}
+name: Avengers
+category_id: 1
+duration: 95.2
+synopsis: When an unexpected enemy emerges that threatens global safety and security, Nick Fury, Director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins.
+age_range: 18
 
-
-http://localhost:7500/api/v1/customer
--- Client
+-- room
 
 {
-"names" : "Jhon" ,
-"surnames" : "Doe",
-"email": "jhondoe@correo.com",
-"document" : "2363213258",
-"dateOfBirth" : "1998-10-24",
-"address" : "214 street Pontifician Av.",
-"phone" : "3195861268"
+"names": "VIP 2 Western",
+"capacity": 2 , 
+"seats_distribution": [{"identity" : "A1", "status": "Available"}, {"identity" : "A2", "status": "Available"}] , "desc_location": "2nd floor next to tickets station"
 }
-
-http://localhost:7500/api/v1/register-pqr
--- PQR Register
-
-{
-    "client_id" : "1",
-    "user_id" : "1",
-    "pqr_category_id" : "1",
-    "description" : "Some description"
-}
-
-http://localhost:7500/api/v1/response-pqr
--- PQR Response
-{
-    "register_pqr_id": "d482d41e-16f2-497c-a70d-deea10d5b7a1",
-    "user_id" : 1,
-    "desc_solution": "Figure out"
-}
-
-
-http://localhost:7500/api/v1/complete
--- PQR Complete
-
-{
-  "status" : "Finalizado"  
-}
-
-http://localhost:7500/api/v1/response-pqr
--- PQR Traceability
-
