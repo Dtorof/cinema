@@ -17,3 +17,10 @@ duration: 95.2
 synopsis: When an unexpected enemy emerges that threatens global safety and security, Nick Fury, Director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins.
 age_range: 18
 
+-- room
+
+{
+"names": "VIP 2 Western",
+"capacity": 2 , 
+"seats_distribution": [{"identity" : "A1", "status": "Available"}, {"identity" : "A2", "status": "Available"}] , "desc_location": "2nd floor next to tickets station"
+}
