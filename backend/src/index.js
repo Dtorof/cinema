@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 6000
 async function dbConnection()  {
     try{
         await db.authenticate()
-        await db.sync({force: true})
+        await db.sync({force: false})
         console.log('Connection has been established successfully.')
         app.listen(PORT) 
         console.log(`Running on http://localhost:${PORT}/api/v1/`)
