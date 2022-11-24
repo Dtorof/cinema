@@ -22,7 +22,7 @@ export const Movie = db.define('movie',{
             allowNull: true
         },
         synopsis:{
-            type: STRING,
+            type: STRING(1000),
             allowNull: true
         },
         age_range:{ 
