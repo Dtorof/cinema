@@ -29,5 +29,5 @@ export const Movie = db.define('movie',{
             type: INTEGER,
             allowNull: true
         }
-        })
+        }, {timestamps: false})
 
