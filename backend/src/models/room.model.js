@@ -1,7 +1,7 @@
 import {  DataTypes } from "sequelize";
 import { db } from "../db/db.js";
 
-const { STRING, INTEGER, DOUBLE } = DataTypes
+const { STRING, INTEGER, ARRAY, JSON } = DataTypes
 
 export const Room = db.define('room',{ 
         id: {
@@ -18,12 +18,12 @@ export const Room = db.define('room',{
             allowNull: true
         },
         seats_distribution:{
-            type: DOUBLE,
+            type: ARRAY(STRING),
             allowNull: true
         },
         desc_location:{
             type: STRING,
             allowNull: true
-        }
-        })
+        },
+        },{timestamps: false})
 
