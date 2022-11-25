@@ -21,6 +21,6 @@ age_range: 18
 
 {
 "names": "VIP 2 Western",
-"capacity": 2 , 
-"seats_distribution": [{"identity" : "A1", "status": "Available"}, {"identity" : "A2", "status": "Available"}] , "desc_location": "2nd floor next to tickets station"
+"capacity": 20 , 
+"desc_location": "2nd floor next to tickets station"
 }

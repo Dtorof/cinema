@@ -131,17 +131,31 @@ export const editResponse = async (req,res) => {
     
         const editRegister = await Room.findByPk(id)
 
-        if (editRegister) {
+        if ( capacity ) {
 
-            editRegister.name = name
+            editRegister.name = req.body?.name
             editRegister.capacity = capacity
-            editRegister.desc_location = desc_location
-            seats_distribution = convertValue(capacity)
+            editRegister.desc_location = req.body?.desc_location
+            editRegister.seats_distribution = convertValue(capacity)
             await editRegister.save()
         
             res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
+            
+        } else if (name ) {
+            editRegister.name = name
+            
+            await editRegister.save()
+            res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
+
+        } else if(desc_location) {
+            editRegister.desc_location = desc_location
+            await editRegister.save()
+            res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
         } else {
-            res.status(404).json({error: "No existen registros con ese ID"})
+            editRegister.name = name
+            editRegister.desc_location = desc_location
+
+            res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
         }
        
       } catch (err) {
