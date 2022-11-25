@@ -51,7 +51,7 @@ export const createResponse = async  (req,res) => {
         state='No Disponible'
     }
     const createRegister = await Billboard.create({
-        room_id, movie_id, start_date, end_date, state, price,
+        room_id, movie_id, start_date, end_date, state, price,schedule_id
     })
 
     res.status(200).json({message: "Register was created succesfully", createRegister})
