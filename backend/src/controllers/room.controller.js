@@ -101,20 +101,61 @@ export const editResponse = async (req,res) => {
     const { id } = req.params
     try {
 
-        const { name, capacity, seats_distribution, desc_location } = req.body
+        const { name, capacity,  desc_location } = req.body
+
+        const convertValue = val => {
+            let capacidad = val
+        
+            var data = [];
+            let numb= 0;
+            let position =65
+        
+            var tempData = [];
+            for ( var index=0; index<=capacidad; index++ ) {
+           
+            if(numb %10==0 && numb>10){
+                position+=1
+                 numb= 0;
+            }
+            let char = String.fromCharCode(position);
+          
+            data[index] = { "ID": char+(numb+1), "State": "Available" };
+             tempData.push( data );
+            numb+= 1;
+            }
+            [data] = tempData;
+            const [...res] = data
+            res.pop(res.length - 1)
+            return res
+            }
     
         const editRegister = await Room.findByPk(id)
 
-        if (editRegister) {
+        if ( capacity ) {
 
-            editRegister.name = name
+            editRegister.name = req.body?.name
             editRegister.capacity = capacity
-            editRegister.desc_location = desc_location
+            editRegister.desc_location = req.body?.desc_location
+            editRegister.seats_distribution = convertValue(capacity)
             await editRegister.save()
         
             res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
+            
+        } else if (name ) {
+            editRegister.name = name
+            
+            await editRegister.save()
+            res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
+
+        } else if(desc_location) {
+            editRegister.desc_location = desc_location
+            await editRegister.save()
+            res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
         } else {
-            res.status(404).json({error: "No existen registros con ese ID"})
+            editRegister.name = name
+            editRegister.desc_location = desc_location
+
+            res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRegister})
         }
        
       } catch (err) {
